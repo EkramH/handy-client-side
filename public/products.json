@@ -1,0 +1,56 @@
+[
+  {
+    "_id": 1,
+    "name": "31 in 1 Screw Driver set",
+    "img": "https://i.ibb.co/XpDFzk3/31-in-1-Screw-Driver-set.jpg",
+    "details": "Professional hardware tools. Comes with a plastic holder to place the screwdriver bits in it Magnetic bits are easy & tight to adsorb into the handle.",
+    "price": 199,
+    "quantity": 200,
+    "minOrder": 10
+  },
+  {
+    "_id": 2,
+    "name": "Snap N Grip Tool",
+    "img": "https://i.ibb.co/7GmZPK7/snap-and-drill.jpg",
+    "details": "Effective, practical, lightweight system. Two universal wrenches that adapt to all kinds of bolts and nuts. Self-adjusting technology.",
+    "price": 350,
+    "quantity": 200,
+    "minOrder": 10
+  },
+  {
+    "_id": 3,
+    "name": "Key Set Hand Tools",
+    "img": "https://i.ibb.co/tYKj4PR/Allen-Key-Set-Hand-Tools.jpg",
+    "details": "Manufactured from chrome vanadium steel. Each L-key is laser engraved with the size of each tool for easy locating. Durable clip for compact storage.",
+    "price": 300,
+    "quantity": 200,
+    "minOrder": 10
+  },
+  {
+    "_id": 4,
+    "name": "8 In 1 Screw Driver",
+    "img": "https://i.ibb.co/6mLt58d/8-In-1-Screw-Driver.jpg",
+    "details": "Exact fit precision machined heads. Made in chrome aluminum steel. Innovative gadget. High quality precision tools.",
+    "price": 350,
+    "quantity": 200,
+    "minOrder": 10
+  },
+  {
+    "_id": 5,
+    "name": "Electric Hot Melt Glue Gun",
+    "img": "https://i.ibb.co/Gv6qC9K/Electric-Hot-Melt-Glue-Gun.jpg",
+    "details": "You Can Repair Wooden And Glass Toys, Sceneries And More. Hot Melt Glue Gun Kit Is Environmental-Friendly.",
+    "price": 300,
+    "quantity": 200,
+    "minOrder": 10
+  },
+  {
+    "_id": 6,
+    "name": "Electric Voltage Tester",
+    "img": "https://i.ibb.co/vmtRyJD/Electric-Voltage-Tester.jpg",
+    "details": "Double head removable,Light weight and easy to carry. pencils can also be used as screwdrivers, steel cutter bars. Applicable to the property, decoration, home, etc",
+    "price": 50,
+    "quantity": 200,
+    "minOrder": 10
+  }
+]
