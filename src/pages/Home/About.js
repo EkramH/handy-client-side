@@ -9,7 +9,9 @@ const About = () => {
           <img src={about} alt="Album" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-5xl text-primary">About Company</h2>
+          <h2 className="card-title text-5xl text-accent font-light">
+            About Company
+          </h2>
           <p>
             We are leading company in this field, We provide specific solutions
             for our every customers.

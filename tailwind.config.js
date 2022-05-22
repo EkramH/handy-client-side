@@ -9,7 +9,7 @@ module.exports = {
         handytheme: {
           primary: "#fc6401",
           secondary: "#C7EFCF",
-          accent: "#3A4256",
+          accent: "#f7c02d",
           neutral: "#3d4451",
           "base-100": "#F9F9FB",
         },
