@@ -1,6 +1,8 @@
 import React from "react";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../shared/Footer";
 
 const Login = () => {
@@ -9,6 +11,16 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+  const navigate = useNavigate();
+  if (user) {
+    navigate("/");
+  }
+
+  if (error) {
+    console.log(error);
+  }
 
   const onSubmit = (data) => console.log(data);
 
@@ -101,7 +113,10 @@ const Login = () => {
               </p>
             </form>
             <div className="divider">OR</div>
-            <button className="btn btn-outline font-bold">
+            <button
+              onClick={() => signInWithGoogle()}
+              className="btn btn-outline font-bold"
+            >
               Continue with Google
             </button>
           </div>
