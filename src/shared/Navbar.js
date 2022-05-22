@@ -24,7 +24,7 @@ const navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-neutral">
+      <div className="navbar bg-neutral p-0 md:px-10 lg:px-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -51,7 +51,11 @@ const navbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <img className="w-3/4" src={logo} alt="" />
+            <img
+              className="w-fill sm:w-3/4 md:w-3/4 lg:w-3/4"
+              src={logo}
+              alt=""
+            />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
