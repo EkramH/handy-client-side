@@ -2,6 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 const navbar = () => {
+  const menuItems = (
+    <>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+      <li>
+        <Link to="/reviews">Reviews</Link>
+      </li>
+      <li>
+        <Link to="/contact">Contact</Link>
+      </li>
+      <li>
+        <Link to="/blog">Blog</Link>
+      </li>
+    </>
+  );
+
   return (
     <div>
       <div className="navbar bg-neutral">
@@ -25,14 +45,9 @@ const navbar = () => {
             </label>
             <ul
               tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-primary"
+              className="menu menu-compact dropdown-content font-bold mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-primary"
             >
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>About</a>
-              </li>
+              {menuItems}
             </ul>
           </div>
           <Link to="/">
@@ -40,13 +55,8 @@ const navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0 text-primary">
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
+          <ul className="menu menu-horizontal p-0 text-primary font-bold">
+            {menuItems}
           </ul>
         </div>
         <div className="navbar-end">
