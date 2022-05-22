@@ -1,12 +1,20 @@
+import { async } from "@firebase/util";
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
 
 const SignUp = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, GError] = useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   const {
     register,
@@ -14,13 +22,16 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+  };
 
-  if (error) {
+  if (error || GError || updateError) {
     console.log(error);
   }
 
-  if (user) {
+  if (user || gUser) {
     console.log(user);
   }
 
