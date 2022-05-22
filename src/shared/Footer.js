@@ -5,7 +5,7 @@ import logo from "../assets/logo.png";
 const footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-base-100 text-base-content">
+      <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
           <img className="fill-current" src={logo} alt="" />
           <p>
@@ -81,7 +81,7 @@ const footer = () => {
           </div>
         </div>
       </footer>
-      <footer className="footer p-4 bg-base-200 text-neutral-content">
+      <footer className="footer p-4 bg-base-300 text-neutral-content">
         <p className="w-full justify-center text-black font-semibold">
           Copyright © 2022 - All right reserved
         </p>
