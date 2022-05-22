@@ -50,7 +50,7 @@ const navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+          <button className="btn">Login</button>
         </div>
       </div>
     </div>
