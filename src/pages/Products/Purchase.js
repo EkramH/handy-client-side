@@ -11,7 +11,7 @@ const Purchase = () => {
     fetch(`http://localhost:5000/product/${productsId}`)
       .then((res) => res.json())
       .then((data) => setPurchase(data));
-  }, [productsId]);
+  }, []);
 
   return (
     <div>

@@ -1,7 +1,16 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import auth from "../firebase.init";
 const navbar = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [user] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  };
+
   const menuItems = (
     <>
       <li>
@@ -67,9 +76,15 @@ const navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login">
-            <button className="btn">Login</button>
-          </Link>
+          {user ? (
+            <button className="btn btn-primary text-white" onClick={logout}>
+              Sign out
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

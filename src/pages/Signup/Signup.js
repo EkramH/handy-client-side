@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, GError] = useSignInWithGoogle(auth);
@@ -32,7 +33,9 @@ const SignUp = () => {
   }
 
   if (user || gUser) {
-    console.log(user);
+    toast.error(`ERROR : ${error}`, {
+      toastId: "error1",
+    });
   }
 
   return (

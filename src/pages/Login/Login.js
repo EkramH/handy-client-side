@@ -1,9 +1,13 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Footer from "../../shared/Footer";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -11,18 +15,27 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
+  };
 
   const navigate = useNavigate();
-  if (user) {
-    navigate("/");
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  if (gUser || user) {
+    navigate(from, { replace: true });
   }
 
-  if (error) {
-    console.log(error);
+  if (gError || error) {
+    toast.error(`ERROR : ${error}`, {
+      toastId: "error1",
+    });
   }
-
-  const onSubmit = (data) => console.log(data);
 
   return (
     <div>
