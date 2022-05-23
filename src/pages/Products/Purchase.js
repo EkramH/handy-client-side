@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../../shared/Footer";
+import PurchaseForm from "./PurchaseForm";
 
 const Purchase = () => {
   const { productsId } = useParams();
@@ -28,8 +29,7 @@ const Purchase = () => {
               <p>Quantity: {purchase.quantity}</p>
               <p>Minimum Order: {purchase.minOrder}</p>
             </div>
-
-            <button className="btn btn-primary">Order Now</button>
+            <PurchaseForm purchase={purchase} productsId={productsId} />
           </div>
         </div>
       </div>
