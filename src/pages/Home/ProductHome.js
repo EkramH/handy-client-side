@@ -11,7 +11,7 @@ const ProductHome = () => {
           All Products
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center my-10 mx-3 md:mx-6 lg:mx-12">
-          {products.slice(0, 3).map((product) => (
+          {products.slice(-3).map((product) => (
             <ProductCard key={product._id} product={product}></ProductCard>
           ))}
         </div>
