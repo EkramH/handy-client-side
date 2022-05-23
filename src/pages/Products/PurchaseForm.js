@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const PurchaseForm = ({ purchase, productsId }) => {
   const [user] = useAuthState(auth);
 
+  const [isDisabled, setDisabled] = useState(false);
+
   const purchaseForm = (event) => {
     event.preventDefault();
     const orderQuantity = event.target.quantity.value;
+
+    if (orderQuantity > purchase.quantity || orderQuantity < 10) {
+      console.log("gapla");
+
+      toast.error(
+        `ERROR : Your order qunatity ${orderQuantity}. You have to order more then 10 quantity and less then ${purchase.quantity}`,
+        {
+          toastId: "error1",
+        }
+      );
+      setDisabled(true);
+    }
     const newQuantity = purchase.quantity - orderQuantity;
     const updatedQuantity = { newQuantity };
     console.log(updatedQuantity);
@@ -59,12 +74,11 @@ const PurchaseForm = ({ purchase, productsId }) => {
           type="number"
           name="quantity"
           placeholder="Quantity"
-          min="10"
-          max="199"
           className="input input-bordered w-full max-w-xs"
           required
         />
         <input
+          disabled={isDisabled}
           type="submit"
           value="Submit"
           className="btn btn-secondary input-bordered w-full max-w-xs"
