@@ -1,18 +1,18 @@
 import { async } from "@firebase/util";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
-  const [signInWithGoogle, gUser, gLoading, GError] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
@@ -23,17 +23,23 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
   };
 
-  if (error || GError || updateError) {
-    console.log(error);
-  }
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user, gUser]);
 
-  if (user || gUser) {
-    toast.error(`ERROR : ${error}`, {
+  if (error || gError || updateError) {
+    toast.error(`ERROR : ${error || gError || updateError}`, {
       toastId: "error1",
     });
   }

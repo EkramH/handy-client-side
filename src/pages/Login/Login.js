@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
@@ -27,12 +27,14 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  if (gUser || user) {
-    navigate(from, { replace: true });
-  }
+  useEffect(() => {
+    if (gUser || user) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate, user, gUser]);
 
   if (gError || error) {
-    toast.error(`ERROR : ${error}`, {
+    toast.error(`ERROR : ${error || gError}`, {
       toastId: "error1",
     });
   }
