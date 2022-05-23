@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
@@ -10,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
 import { toast } from "react-toastify";
+import Loading from "../../shared/Loading";
 
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -42,6 +42,10 @@ const SignUp = () => {
     toast.error(`ERROR : ${error || gError || updateError}`, {
       toastId: "error1",
     });
+  }
+
+  if (loading || gLoading || updating) {
+    return <Loading />;
   }
 
   return (

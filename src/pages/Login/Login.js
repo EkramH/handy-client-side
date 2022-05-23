@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Footer from "../../shared/Footer";
 import { toast } from "react-toastify";
+import Loading from "../../shared/Loading";
 
 const Login = () => {
   const {
@@ -37,6 +38,10 @@ const Login = () => {
     toast.error(`ERROR : ${error || gError}`, {
       toastId: "error1",
     });
+  }
+
+  if (loading || gLoading) {
+    return <Loading />;
   }
 
   return (
