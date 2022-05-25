@@ -19,13 +19,13 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
 
     const purchased = {
       purchasedId : purchase._id,
+      itemName: purchase.name,
       name : user.displayName,
       userEmail : user.email,
       address: address,
       phone: phoneNumber,
       quantity: orderQuantity
     }
-    console.log(purchased)
 
     if(purchase.quantity === 0){
       toast.error(
@@ -86,7 +86,7 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
           confirmButtonText: "Yeahh ",
         }).then((result) => {
           if (result.isConfirmed){
-            navigate('/');
+            navigate('/dashboard/orders');
           }
         })
         refetch();
