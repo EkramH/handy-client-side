@@ -6,6 +6,8 @@ const ProductCard = ({ product }) => {
 
   const { _id, name, img, details, price, quantity, minOrder } = product;
 
+  //It worked now
+
   const navigateToPurchasePage = (id) => {
     navigate(`/products/${id}`);
   };

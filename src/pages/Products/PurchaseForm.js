@@ -37,6 +37,10 @@ const PurchaseForm = ({ purchase, productsId }) => {
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
+
+  const quantityHandle = event =>{
+    setDisabled(false);
+  }
   return (
     <div>
       <form
@@ -71,6 +75,7 @@ const PurchaseForm = ({ purchase, productsId }) => {
           required
         />
         <input
+        onClick={quantityHandle}
           type="number"
           name="quantity"
           placeholder="Quantity"
