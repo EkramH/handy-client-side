@@ -11,14 +11,13 @@ const Myorders = () => {
 
   useEffect(()=>{
     if(user){
-      fetch(`http://localhost:5000/purchased?userEmail=${user.email}`, {
+      fetch(`https://boiling-garden-19713.herokuapp.com/purchased?userEmail=${user.email}`, {
         method: "GET",
         headers: {
-          "authorization": `Bearer ${localStorage.getItem('accessToken')}`
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
       })
       .then(res =>{
-        console.log('res', res);
         if(res.status === 401 || res.status === 403){
             signOut(auth);
             localStorage.removeItem('accessToken');
@@ -27,7 +26,7 @@ const Myorders = () => {
         return res.json()})
       .then(data => setOrders(data));
     }
-  },[user])
+  },[user, navigate])
 
 
     return (

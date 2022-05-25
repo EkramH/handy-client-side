@@ -7,19 +7,12 @@ import Loading from "../../shared/Loading"
 const Purchase = () => {
   const { productsId } = useParams();
 
-  // const [purchase, setPurchase] = useState({});
-
   const {data: purchase, isLoading, refetch } = useQuery('purchase', ()=> fetch(`https://boiling-garden-19713.herokuapp.com/product/${productsId}`)
             .then((res) => res.json()))
 
             if(isLoading){
               return <Loading/>
             }
-  // useEffect(() => {
-  //   fetch(`https://boiling-garden-19713.herokuapp.com/product/${productsId}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setPurchase(data));
-  // },[]);
 
   return (
     <div>
