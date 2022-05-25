@@ -1,41 +1,87 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const PurchaseForm = ({ purchase, productsId }) => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate()
 
   const [isDisabled, setDisabled] = useState(false);
+
 
   const purchaseForm = (event) => {
     event.preventDefault();
     const orderQuantity = event.target.quantity.value;
+    const phoneNumber = event.target.phone.value;
+    const address = event.target.address.value;
 
-    if (orderQuantity > purchase.quantity || orderQuantity < 10) {
-      console.log("gapla");
+    const purchased = {
+      purchasedId : purchase._id,
+      name : user.displayName,
+      userEmail : user.email,
+      address: address,
+      phone: phoneNumber,
+      quantity: orderQuantity
+    }
 
+    console.log(purchased)
+
+    if(purchase.quantity === 0){
       toast.error(
-        `ERROR : Your order qunatity ${orderQuantity}. You have to order more then 10 quantity and less then ${purchase.quantity}`,
+        `ERROR : Product is not avaiable `,
         {
           toastId: "error1",
         }
       );
       setDisabled(true);
     }
-    const newQuantity = purchase.quantity - orderQuantity;
-    const updatedQuantity = { newQuantity };
-    console.log(updatedQuantity);
+    else if(orderQuantity > purchase.quantity){
+      toast.error(
+        `ERROR : Your order qunatity ${orderQuantity}. You have to order and less then ${purchase.quantity}`,
+        {
+          toastId: "error1",
+        }
+      );
+      setDisabled(true);
+    }
+    else if( orderQuantity < 10) {
+      toast.error(
+        `ERROR : Your order qunatity ${orderQuantity}. You have to order more then 10 quantity`,
+        {
+          toastId: "error1",
+        }
+      );
+      setDisabled(true);
 
-    fetch(`http://localhost:5000/product/${productsId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedQuantity),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    } else{ 
+      const newQuantity = purchase.quantity - orderQuantity;
+      const updatedQuantity = { newQuantity };
+      console.log(updatedQuantity);
+  
+      fetch(`http://localhost:5000/product/${productsId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedQuantity),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+
+          if(data.success){
+            toast.success(
+              `ERROR : Your order ${orderQuantity} is successfull.`,
+              {
+                toastId: "success1",
+              }
+            );
+          }
+
+          navigate("/login")
+        }); 
+    }
   };
 
   const quantityHandle = event =>{
@@ -66,6 +112,13 @@ const PurchaseForm = ({ purchase, productsId }) => {
           value={user?.email || ""} //undefined value to definer value error solved with || "".
           disabled
           className="input input-bordered w-full max-w-xs font-semibold"
+        />
+        <input
+          type="text"
+          name="address"
+          placeholder="Your Address"
+          className="input input-bordered w-full max-w-xs"
+          required
         />
         <input
           type="number"
