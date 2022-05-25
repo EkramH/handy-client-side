@@ -9,6 +9,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import Footer from "../../shared/Footer";
 import { toast } from "react-toastify";
 import Loading from "../../shared/Loading";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const {
@@ -28,11 +29,13 @@ const Login = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
+  const [token] = useToken(user || gUser);
+
   useEffect(() => {
-    if (gUser || user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [from, navigate, user, gUser]);
+  }, [from, navigate, token]);
 
   if (gError || error) {
     toast.error(`ERROR : ${error || gError}`, {

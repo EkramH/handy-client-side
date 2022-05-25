@@ -10,18 +10,20 @@ import auth from "../../firebase.init";
 import Footer from "../../shared/Footer";
 import { toast } from "react-toastify";
 import Loading from "../../shared/Loading";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  const [token] = useToken(user || gUser);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,10 +35,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [from, navigate, user, gUser]);
+  }, [from, navigate, token]);
 
   if (error || gError || updateError) {
     toast.error(`ERROR : ${error || gError || updateError}`, {
