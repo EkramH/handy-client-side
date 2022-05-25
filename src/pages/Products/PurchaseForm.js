@@ -59,7 +59,7 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
       const updatedQuantity = { newQuantity };
       
       // quantity
-      fetch(`http://localhost:5000/product/${productsId}`, {
+      fetch(`https://boiling-garden-19713.herokuapp.com/product/${productsId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
       .then((res) => res.json()) 
       
       //purchased
-      fetch(`http://localhost:5000/purchased`, {
+      fetch(`https://boiling-garden-19713.herokuapp.com/purchased`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

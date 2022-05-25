@@ -8,7 +8,7 @@ const Myorders = () => {
 
   useEffect(()=>{
     if(user){
-      fetch(`http://localhost:5000/purchased?userEmail=${user.email}`)
+      fetch(`https://boiling-garden-19713.herokuapp.com/purchased?userEmail=${user.email}`)
       .then(res => res.json())
       .then(data => setOrders(data));
     }

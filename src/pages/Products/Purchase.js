@@ -9,14 +9,14 @@ const Purchase = () => {
 
   // const [purchase, setPurchase] = useState({});
 
-  const {data: purchase, isLoading, refetch } = useQuery('purchase', ()=> fetch(`http://localhost:5000/product/${productsId}`)
+  const {data: purchase, isLoading, refetch } = useQuery('purchase', ()=> fetch(`https://boiling-garden-19713.herokuapp.com/product/${productsId}`)
             .then((res) => res.json()))
 
             if(isLoading){
               return <Loading/>
             }
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/product/${productsId}`)
+  //   fetch(`https://boiling-garden-19713.herokuapp.com/product/${productsId}`)
   //     .then((res) => res.json())
   //     .then((data) => setPurchase(data));
   // },[]);
