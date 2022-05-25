@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../../shared/Footer";
 import PurchaseForm from "./PurchaseForm";
+import { useQuery } from "react-query"
+import Loading from "../../shared/Loading"
 
 const Purchase = () => {
   const { productsId } = useParams();
 
-  const [purchase, setPurchase] = useState({});
+  // const [purchase, setPurchase] = useState({});
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/product/${productsId}`)
-      .then((res) => res.json())
-      .then((data) => setPurchase(data));
-  },[]);
+  const {data: purchase, isLoading, refetch } = useQuery('purchase', ()=> fetch(`http://localhost:5000/product/${productsId}`)
+            .then((res) => res.json()))
+
+            if(isLoading){
+              return <Loading/>
+            }
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/product/${productsId}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setPurchase(data));
+  // },[]);
 
   return (
     <div>
@@ -29,7 +37,7 @@ const Purchase = () => {
               <p>Quantity: {purchase.quantity}</p>
               <p>Minimum Order: {purchase.minOrder}</p>
             </div>
-            <PurchaseForm purchase={purchase} productsId={productsId} />
+            <PurchaseForm purchase={purchase} productsId={productsId} refetch={refetch} />
           </div>
         </div>
       </div>

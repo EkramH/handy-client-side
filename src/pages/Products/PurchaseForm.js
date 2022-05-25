@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 import auth from "../../firebase.init";
 
-const PurchaseForm = ({ purchase, productsId }) => {
+const PurchaseForm = ({ purchase, productsId, refetch }) => {
   const [user] = useAuthState(auth);
   const [isDisabled, setDisabled] = useState(false);
+
+  const navigate = useNavigate()
 
   const purchaseForm = (event) => {
     event.preventDefault();
@@ -73,7 +77,20 @@ const PurchaseForm = ({ purchase, productsId }) => {
         body: JSON.stringify(purchased),
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        Swal.fire({
+          title: "Your purchase is complete!",
+          text: "Go to dashboard check your item.",
+          icon: "success",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Yeahh ",
+        }).then((result) => {
+          if (result.isConfirmed){
+            navigate('/');
+          }
+        })
+        refetch();
+      })
     }
 
   };
