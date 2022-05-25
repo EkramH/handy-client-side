@@ -9,6 +9,7 @@ import Navbar from "./shared/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RequireAuth from "./pages/Login/RequireAuth";
+import NotFound from "./shared/NotFound";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         ></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="signup" element={<SignUp></SignUp>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer />
     </div>
