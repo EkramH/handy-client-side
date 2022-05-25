@@ -31,6 +31,11 @@ const navbar = () => {
       <li>
         <Link to="/blog">Blog</Link>
       </li>
+      { user &&
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      }
     </>
   );
 
@@ -76,10 +81,14 @@ const navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+
           {user ? (
-            <button className="btn btn-primary text-white" onClick={logout}>
-              Sign out
-            </button>
+            <div className="flex items-center">
+              <p className="text-secondary font-semibold p-1 md:px-2 lg:px-3">{user.displayName}</p>
+              <button className="btn btn-primary text-white" onClick={logout}>
+                Sign out
+              </button>
+            </div>
           ) : (
             <Link to="/login">
               <button className="btn">Login</button>
