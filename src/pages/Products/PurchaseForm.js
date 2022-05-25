@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const PurchaseForm = ({ purchase, productsId }) => {
   const [user] = useAuthState(auth);
-  const navigate = useNavigate()
-
   const [isDisabled, setDisabled] = useState(false);
-
 
   const purchaseForm = (event) => {
     event.preventDefault();
@@ -25,7 +21,6 @@ const PurchaseForm = ({ purchase, productsId }) => {
       phone: phoneNumber,
       quantity: orderQuantity
     }
-
     console.log(purchased)
 
     if(purchase.quantity === 0){
@@ -58,8 +53,8 @@ const PurchaseForm = ({ purchase, productsId }) => {
     } else{ 
       const newQuantity = purchase.quantity - orderQuantity;
       const updatedQuantity = { newQuantity };
-      console.log(updatedQuantity);
-  
+      
+      // quantity
       fetch(`http://localhost:5000/product/${productsId}`, {
         method: "PUT",
         headers: {
@@ -67,24 +62,23 @@ const PurchaseForm = ({ purchase, productsId }) => {
         },
         body: JSON.stringify(updatedQuantity),
       })
-        .then((res) => res.json())
-        .then((data) => {
-
-          if(data.success){
-            toast.success(
-              `ERROR : Your order ${orderQuantity} is successfull.`,
-              {
-                toastId: "success1",
-              }
-            );
-          }
-
-          navigate("/login")
-        }); 
+      .then((res) => res.json()) 
+      
+      //purchased
+      fetch(`http://localhost:5000/purchased`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(purchased),
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
     }
+
   };
 
-  const quantityHandle = event =>{
+  const quantityHandle = () =>{
     setDisabled(false);
   }
   return (
