@@ -4,11 +4,13 @@ const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
 
+    console.log(admin)
+
   useEffect(() => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:5000/admin/${email}`, {
+      fetch(`https://boiling-garden-19713.herokuapp.com/admin/${email}`, {
         method: "GET",
         headers: {
           "content-type": "application/json",
