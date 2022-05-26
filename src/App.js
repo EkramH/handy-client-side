@@ -16,6 +16,7 @@ import Myorders from "./pages/Dashborad/Myorders";
 import Myreview from "./pages/Dashborad/Myreview";
 import Alluser from "./pages/Dashborad/Admin/Alluser";
 import RequireAdmin from "./pages/Login/RequireAdmin";
+import Reviews from "./pages/Reviews/Reviews";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="products" element={<Products></Products>}></Route>
+        <Route path="reviews" element={<Reviews></Reviews>}></Route>
         <Route
           path="products/:productsId"
           element={
