@@ -1,8 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Swal from 'sweetalert2';
 
-const Additem = () => {
+const UpdateProfile = () => {
     const {
         register,
         formState: { errors },
@@ -10,26 +9,15 @@ const Additem = () => {
         reset
       } = useForm();
 
-      const onSubmit = async (data) => {
-          console.log(data) 
-          fetch(`https://boiling-garden-19713.herokuapp.com/products`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            Swal.fire("New Product Added Succesfully");
-            reset(); 
-          });     
-      };
+      const onSubmit = async (data) =>{
+          console.log(data)
+      }
+
 
     return (
         <div>
-            <h2 className="text-2xl p-4 text-primary">Add Item</h2>
-            <div className="my-20 flex justify-center items-center">
+            <h2 className="text-2xl p-4 text-primary text-center">Update Profile</h2>
+            <div className="my-5 flex justify-center items-center">
         <div className="card w-96 bg-white shadow-xl">
           <div className="card-body">
             <form onSubmit={handleSubmit(onSubmit)} 
@@ -80,6 +68,7 @@ const Additem = () => {
 
             <input 
                 type="submit"
+                value="Update"
                 className="btn btn-primary input-bordered w-full max-w-xs"
                  />
             </form>
@@ -90,4 +79,4 @@ const Additem = () => {
     );
 };
 
-export default Additem;
+export default UpdateProfile;
