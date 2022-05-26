@@ -64,7 +64,7 @@ const UserInfo = ({user, index, refetch}) => {
         <td>{name || <p>User</p>}</td>
         <td>{email}</td>
         <td>{role !== "admin" && <button onClick={makeAdmin} className="btn btn-xs text-sm">Make Admin</button>}</td>
-        <td><button onClick={() => handleDelete(email)} className="btn btn-xs text-sm">Remove User</button></td>
+        <td><button onClick={() => handleDelete(email)} className="btn btn-xs text-sm bg-red-600 text-white">Remove User</button></td>
       </tr>
     );
 };

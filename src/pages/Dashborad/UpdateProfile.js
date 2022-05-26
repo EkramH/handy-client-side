@@ -2,8 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { toast } from 'react-toastify';
 
-const UpdateProfile = () => {
+const UpdateProfile = ({refetch}) => {
     const {
         register,
         formState: { errors },
@@ -12,18 +13,31 @@ const UpdateProfile = () => {
       } = useForm();
 
       const [user] = useAuthState(auth);
-
       const onSubmit = async (data) =>{
           console.log(data)
+
+          fetch(`https://boiling-garden-19713.herokuapp.com/user/${user.email}`, {
+            method: "PUT",
+            headers: {
+                'content-type' : 'application/json' 
+            },
+            body: JSON.stringify(data)
+        })
+            .then((res) => res.json())
+            .then((result) => {
+                toast.success(`Order item deleted!`);
+                reset()
+                refetch()
+            });
       }
 
 
     return (
         <div>
-            <h2 className="text-2xl p-4 text-primary text-center">Update Profile</h2>
             <div className="my-5 flex justify-center items-center">
         <div className="card w-96 bg-white shadow-xl">
           <div className="card-body">
+          <h2 className="text-2xl text-primary text-center">Update Profile</h2>
             <form onSubmit={handleSubmit(onSubmit)} 
             className="grid grid-cols-1 gap-3 justify-items-center pt-5">
             <input 
