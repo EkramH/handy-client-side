@@ -2,12 +2,16 @@ import { signOut } from 'firebase/auth';
 import React, {useEffect, useState} from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import auth from "../../firebase.init";
 
 const Myorders = () => {
   const [orders, setOrders] = useState([]);
   const [user] = useAuthState(auth)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+
 
   useEffect(()=>{
     if(user){
@@ -28,6 +32,32 @@ const Myorders = () => {
     }
   },[user, navigate])
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure to delete this?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yeahh ",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `http://localhost:5000/purchased/${id}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const remaining = orders.filter(
+              (order) => order._id !== id
+            );
+            setOrders(remaining);
+            toast.success(`Order item deleted!`);
+          });
+      }
+    });
+  };
+
 
     return (
         <div>
@@ -40,6 +70,7 @@ const Myorders = () => {
                 <th>Item Name</th>
                 <th>Quantity</th>
                 <th>Email</th>
+                <th></th>
               </tr>
             </thead>
   
@@ -52,6 +83,7 @@ const Myorders = () => {
                     <td>{order.itemName}</td>
                     <td>{order.quantity}</td>
                     <td>{order.userEmail}</td>
+                    <td><button onClick={() => handleDelete(order._id)} className="btn btn-xs bg-red-500 text-white">Delete Item</button></td>
                   </tr>
                 )
               }

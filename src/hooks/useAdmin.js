@@ -4,8 +4,6 @@ const useAdmin = (user) => {
   const [admin, setAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
 
-    console.log(admin)
-
   useEffect(() => {
     const email = user?.email;
 
