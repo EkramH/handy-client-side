@@ -1,15 +1,9 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import Footer from "../../shared/Footer"
 import Loading from '../../shared/Loading';
 
-const Reviews = () => {
-    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('http://localhost:5000/reviews', {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      }).then(res => res.json()))
+const ReviewHome = () => {
+    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('http://localhost:5000/reviews').then(res => res.json()))
 
       if(isLoading){
          return <Loading />
@@ -19,9 +13,9 @@ const Reviews = () => {
         <div>
             <div>
             <h2 className="text-5xl text-primary font-light text-center my-11">
-                All Review
+                Review
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-items-center my-10 mx-3 md:mx-6 lg:mx-12">              
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 justify-items-center my-10 mx-3 md:mx-6 lg:mx-12">              
                 {
                     reviews.map(review =>
                         <div key={review._id}>
@@ -37,9 +31,8 @@ const Reviews = () => {
                 }
             </div>
             </div>
-            <Footer/>
         </div>
     );
 };
 
-export default Reviews;
+export default ReviewHome;
