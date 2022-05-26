@@ -36,8 +36,6 @@ const UserInfo = ({user, index, refetch}) => {
   }
 
   const handleDelete = (email) =>{
-    console.log(email)
-
     Swal.fire({
       title: "Are you sure to delete this?",
       icon: "warning",
@@ -47,13 +45,12 @@ const UserInfo = ({user, index, refetch}) => {
       confirmButtonText: "Yeahh ",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:5000/user/${email}`;
+        const url = `https://boiling-garden-19713.herokuapp.com/user/${email}`;
         fetch(url, {
           method: "DELETE",
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data)
             toast.success(`User Delete`);
             refetch()
         });

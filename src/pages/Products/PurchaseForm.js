@@ -45,9 +45,9 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
       );
       setDisabled(true);
     }
-    else if( orderQuantity < 10) {
+    else if( orderQuantity < purchase.minOrder) {
       toast.error(
-        `ERROR : Your order qunatity ${orderQuantity}. You have to order more then 10 quantity`,
+        `ERROR : Your order qunatity ${orderQuantity}. You have to order more then ${purchase.minOrder} quantity`,
         {
           toastId: "error1",
         }
