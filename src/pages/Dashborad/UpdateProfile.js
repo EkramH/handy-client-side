@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const UpdateProfile = () => {
     const {
@@ -8,6 +10,8 @@ const UpdateProfile = () => {
         handleSubmit,
         reset
       } = useForm();
+
+      const [user] = useAuthState(auth);
 
       const onSubmit = async (data) =>{
           console.log(data)
@@ -25,46 +29,32 @@ const UpdateProfile = () => {
             <input 
                 type="text"
                 name="name"
-                placeholder='Item Name'
+                value={user.displayName}
+                placeholder='Your Name'
                 className="input input-bordered w-full max-w-xs font-semibold" 
-                {...register("name", { required: true, minLength: 2, })} />
+                {...register("name", { required: true, minLength: 1, })} />
 
             <input 
                 type="text"
-                name="image"
-                placeholder='Item Image'
+                name="email"
+                value={user.email}
+                readOnly
                 className="input input-bordered w-full max-w-xs font-semibold" 
-                {...register("img", { required: true,})} />
-            
-            <textarea 
-                className="textarea input input-bordered w-full max-w-xs font-semibold" 
-                placeholder="Details // min 10 words"
-                {...register("details", { required: true, minLength: 10, maxLength: 250, })}
-                ></textarea>
-            
-            <input
-                type="number"
-                name="price"
-                placeholder="Price // min 1 "
-                className="input input-bordered w-full max-w-xs font-semibold"
-                {...register("price", {  valueAsNumber: true, required: true, min: 1, })} />
+                {...register("email", { required: true })} />   
 
-            <input
-                type="number"
-                name="quantity"
-                placeholder="Quantity // min 100 and max 500"
-                className="input input-bordered w-full max-w-xs font-semibold"
-                {...register("quantity", { valueAsNumber: true, required: true, min: 100, max: 5000 })} />
+            <input            
+                type="text"
+                name="address"
+                placeholder='Your address // Dhaka'
+                className="input input-bordered w-full max-w-xs font-semibold" 
+                {...register("address", { required: true, minLength: 1, maxLength: 30 })} />
 
-
-            <input
-                type="number"
-                name="minOrder"
-                placeholder="Minimum Order // min 10 and max 100"
-                className="input input-bordered w-full max-w-xs font-semibold"
-                {...register("minOrder", {
-                    valueAsNumber: true, required: true, min: 10, max: 100
-                  })} />
+            <input            
+                type="text"
+                name="link"
+                placeholder='Your Github link'
+                className="input input-bordered w-full max-w-xs font-semibold" 
+                {...register("github", { required: true})} />         
 
             <input 
                 type="submit"
