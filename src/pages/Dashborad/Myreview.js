@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import auth from '../../firebase.init';
 
 
@@ -10,10 +11,22 @@ const Myreview = () => {
         register,
         formState: { errors },
         handleSubmit,
+        reset
       } = useForm();
 
       const onSubmit = (data) => {
-        console.log(data);
+        fetch(`http://localhost:5000/reviews`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+          });
+          Swal.fire("Thanks for your kind review!");
+          reset();
       };
 
     return (
@@ -52,6 +65,12 @@ const Myreview = () => {
                 value={user?.email || ""} 
                 className="input input-bordered w-full max-w-xs font-semibold"
                 {...register("email")} />
+            <input
+                type="number"
+                name="rating"
+                placeholder="Rating Number // 1 to 5"
+                className="input input-bordered w-full max-w-xs font-semibold"
+                {...register("rating", { required: true, min: 1, max: 5, })} />
 
             <textarea 
                 className="textarea input input-bordered w-full max-w-xs font-semibold" 
