@@ -4,7 +4,7 @@ import Loading from '../../../shared/Loading';
 import UserInfo from './UserInfo';
 
 const Alluser = () => {
-    const {data: users, isLoading} = useQuery('users', () => fetch('http://localhost:5000/user', {
+    const {data: users, isLoading, refetch} = useQuery('users', () => fetch('http://localhost:5000/user', {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -31,7 +31,7 @@ const Alluser = () => {
   
             <tbody>
               {
-                  users.map((user, index) => <UserInfo key={user._id} user={user} index={index}></UserInfo>)
+                  users.map((user, index) => <UserInfo key={user._id} user={user} index={index} refetch={refetch}></UserInfo>)
               }
             </tbody>
           </table>
