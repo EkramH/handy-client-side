@@ -12,7 +12,7 @@ const Myprofile = () => {
     .then((res) => res.json()))
 
     if(isLoading){
-        return <Loading/>
+        return <Loading true/>
     }
 
     return (
