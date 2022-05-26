@@ -15,7 +15,7 @@ const Myreview = () => {
       } = useForm();
 
       const onSubmit = (data) => {
-        fetch(`http://localhost:5000/reviews`, {
+        fetch(`https://boiling-garden-19713.herokuapp.com/reviews`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

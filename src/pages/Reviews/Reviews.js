@@ -4,7 +4,7 @@ import Footer from "../../shared/Footer"
 import Loading from '../../shared/Loading';
 
 const Reviews = () => {
-    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('http://localhost:5000/reviews', {
+    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('https://boiling-garden-19713.herokuapp.com/reviews', {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`

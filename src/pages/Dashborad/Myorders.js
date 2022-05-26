@@ -42,7 +42,7 @@ const Myorders = () => {
       confirmButtonText: "Yeahh ",
     }).then((result) => {
       if (result.isConfirmed) {
-        const url = `http://localhost:5000/purchased/${id}`;
+        const url = `https://boiling-garden-19713.herokuapp.com/purchased/${id}`;
         fetch(url, {
           method: "DELETE",
         })

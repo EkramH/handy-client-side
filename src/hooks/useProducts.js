@@ -6,7 +6,7 @@ const useProducts = () => {
   useEffect(() => {
     fetch("https://boiling-garden-19713.herokuapp.com/product")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data)); 
   }, []);
   return [products];
 };

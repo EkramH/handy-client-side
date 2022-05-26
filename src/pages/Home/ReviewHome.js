@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import Loading from '../../shared/Loading';
 
 const ReviewHome = () => {
-    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('http://localhost:5000/reviews').then(res => res.json()))
+    const {data: reviews, isLoading} = useQuery('reviews', () => fetch('https://boiling-garden-19713.herokuapp.com/reviews').then(res => res.json()))
 
       if(isLoading){
          return <Loading />
@@ -17,7 +17,7 @@ const ReviewHome = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-5 justify-items-center my-10 mx-3 md:mx-6 lg:mx-12">              
                 {
-                    reviews.map(review =>
+                    reviews.slice(0, 6).map(review =>
                         <div key={review._id}>
                             <div className="card lg:max-w-lg h-full bg-base-100 shadow-xl">
                                 <div className="card-body">
