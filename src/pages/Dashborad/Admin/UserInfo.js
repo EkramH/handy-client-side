@@ -1,5 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const UserInfo = ({user, index, refetch}) => {
   const {name, email, role} = user;
@@ -33,13 +34,40 @@ const UserInfo = ({user, index, refetch}) => {
       }
     })
   }
+
+  const handleDelete = (email) =>{
+    console.log(email)
+
+    Swal.fire({
+      title: "Are you sure to delete this?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yeahh ",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const url = `http://localhost:5000/user/${email}`;
+        fetch(url, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            toast.success(`User Delete`);
+            refetch()
+        });
+      }
+    });
+  }
+
     return (
         <tr>
         <th>{index + 1}</th>
         <td>{name || <p>User</p>}</td>
         <td>{email}</td>
         <td>{role !== "admin" && <button onClick={makeAdmin} className="btn btn-xs text-sm">Make Admin</button>}</td>
-        <td><button className="btn btn-xs text-sm">Remove User</button></td>
+        <td><button onClick={() => handleDelete(email)} className="btn btn-xs text-sm">Remove User</button></td>
       </tr>
     );
 };
