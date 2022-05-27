@@ -11,7 +11,6 @@ const Additem = () => {
       } = useForm();
 
       const onSubmit = async (data) => {
-          console.log(data) 
           fetch(`https://boiling-garden-19713.herokuapp.com/products`, {
           method: "POST",
           headers: {

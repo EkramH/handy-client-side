@@ -14,8 +14,6 @@ const UpdateProfile = ({refetch}) => {
 
       const [user] = useAuthState(auth);
       const onSubmit = async (data) =>{
-          console.log(data)
-
           fetch(`https://boiling-garden-19713.herokuapp.com/user/${user.email}`, {
             method: "PUT",
             headers: {
