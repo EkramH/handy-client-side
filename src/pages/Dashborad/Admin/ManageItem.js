@@ -9,6 +9,7 @@ const ManageItem = () => {
     const productDelete = (id) =>{
         Swal.fire({
           title: "Are you sure to delete this?",
+          text: "After delete You have to refresh!",
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",

@@ -19,6 +19,7 @@ import RequireAdmin from "./pages/Login/RequireAdmin";
 import Reviews from "./pages/Reviews/Reviews";
 import Additem from "./pages/Dashborad/Admin/Additem";
 import ManageItem from "./pages/Dashborad/Admin/ManageItem";
+import Blog from "./pages/Blog/Blog";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="products" element={<Products></Products>}></Route>
         <Route path="reviews" element={<Reviews></Reviews>}></Route>
+        <Route path="blog" element={<Blog></Blog>}></Route>
         <Route
           path="products/:productsId"
           element={
