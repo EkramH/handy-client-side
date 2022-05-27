@@ -20,6 +20,7 @@ import Reviews from "./pages/Reviews/Reviews";
 import Additem from "./pages/Dashborad/Admin/Additem";
 import ManageItem from "./pages/Dashborad/Admin/ManageItem";
 import Blog from "./pages/Blog/Blog";
+import About from "./pages/About/About";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="products" element={<Products></Products>}></Route>
         <Route path="reviews" element={<Reviews></Reviews>}></Route>
+        <Route path="about" element={<About></About>}></Route>
         <Route path="blog" element={<Blog></Blog>}></Route>
         <Route
           path="products/:productsId"
