@@ -24,7 +24,8 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
       userEmail : user.email,
       address: address,
       phone: phoneNumber,
-      quantity: orderQuantity
+      quantity: orderQuantity,
+      price: purchase.price
     }
 
     if(purchase.quantity === 0){
@@ -136,6 +137,15 @@ const PurchaseForm = ({ purchase, productsId, refetch }) => {
           name="phone"
           placeholder="Phone Number"
           className="input input-bordered w-full max-w-xs"
+          required
+        />
+        <input
+          type="number"
+          name="phone"
+          value={purchase.price}
+          placeholder="Phone Number"
+          className="input input-bordered w-full max-w-xs"
+          readOnly
           required
         />
         <input

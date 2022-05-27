@@ -1,6 +1,5 @@
 import React from 'react';
 import aboutMe from '../../assets/aboutMe.jpg'
-import { FaJsSquare } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const About = () => {
@@ -30,6 +29,12 @@ const About = () => {
                 <p>ekramhosen329@gmail.com</p>               
             </div>
             <div className="text-blueGray-600 my-5">
+                <h3 className='text-md leading-normal mt-0 text-blueGray-400 font-bold uppercase'>Education:</h3>
+                <p className='text-base'>Bachelor of Science in <span className='font-semibold'>Computer Science and Engineering (CSE)</span></p>
+                <p className='text-base'>- 2022, <span className='font-semibold'>Institute of Science and Technology (IST)</span></p>
+            </div>
+
+            <div className="text-blueGray-600 my-5">
                 <h3 className='text-md leading-normal mt-0 text-blueGray-400 font-bold uppercase'>Skills:</h3>
                 <p className='text-base'>C, Javascript, NodeJs, ExpressJs, MongoDb, React, HTML, CSS, Bootstrap, TailwindCSS</p>
             </div>
@@ -38,10 +43,10 @@ const About = () => {
             <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-9/12 px-4">
                   <h3 className='text-2xl font-semibold text-blueGray-700'>My Projects</h3>
-                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                <button class="btn btn-link"><Link to="https://tooth-care-fd1e3.web.app/">Tooth Care</Link></button>               
-                <button class="btn btn-link"><Link to="https://phone-link-ab2f7.web.app/">Phone Link</Link></button>               
-                <button class="btn btn-link"><Link to="https://ekramh.github.io/elecar-responsive-website/">Elecar</Link></button>               
+                <p className="mb-4 text-lg leading-relaxed text-blueGray-700">             
+                <button class="btn btn-link"><a target="_blank" href="https://tooth-care-fd1e3.web.app/" rel="noreferrer">Tooth Care</a></button>                           
+                <button class="btn btn-link"><a target="_blank" href="https://phone-link-ab2f7.web.app/" rel="noreferrer">Phone Link</a></button>                           
+                <button class="btn btn-link"><a target="_blank" href="http://ekramh.github.io/elecar-responsive-website/" rel="noreferrer">Elecar</a></button>                           
                 </p>
               </div>
             </div>
