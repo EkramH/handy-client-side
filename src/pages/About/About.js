@@ -1,6 +1,5 @@
 import React from 'react';
 import aboutMe from '../../assets/aboutMe.jpg'
-import { Link } from 'react-router-dom';
 
 const About = () => {
     return (
@@ -44,9 +43,9 @@ const About = () => {
               <div className="w-full lg:w-9/12 px-4">
                   <h3 className='text-2xl font-semibold text-blueGray-700'>My Projects</h3>
                 <p className="mb-4 text-lg leading-relaxed text-blueGray-700">             
-                <button class="btn btn-link"><a target="_blank" href="https://tooth-care-fd1e3.web.app/" rel="noreferrer">Tooth Care</a></button>                           
-                <button class="btn btn-link"><a target="_blank" href="https://phone-link-ab2f7.web.app/" rel="noreferrer">Phone Link</a></button>                           
-                <button class="btn btn-link"><a target="_blank" href="http://ekramh.github.io/elecar-responsive-website/" rel="noreferrer">Elecar</a></button>                           
+                <button className="btn btn-link"><a target="_blank" href="https://tooth-care-fd1e3.web.app/" rel="noreferrer">Tooth Care</a></button>                           
+                <button className="btn btn-link"><a target="_blank" href="https://phone-link-ab2f7.web.app/" rel="noreferrer">Phone Link</a></button>                           
+                <button className="btn btn-link"><a target="_blank" href="http://ekramh.github.io/elecar-responsive-website/" rel="noreferrer">Elecar</a></button>                           
                 </p>
               </div>
             </div>

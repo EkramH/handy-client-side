@@ -21,6 +21,7 @@ import Additem from "./pages/Dashborad/Admin/Additem";
 import ManageItem from "./pages/Dashborad/Admin/ManageItem";
 import Blog from "./pages/Blog/Blog";
 import About from "./pages/About/About";
+import Payment from "./pages/Dashborad/Payment";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route index element={<Myprofile></Myprofile>}></Route>
           <Route path="orders" element={<Myorders></Myorders>}></Route>
           <Route path="review" element={<Myreview></Myreview>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="alluser" element={<RequireAdmin><Alluser></Alluser></RequireAdmin>}></Route>
           <Route path="additem" element={<RequireAdmin><Additem></Additem></RequireAdmin>}></Route>
           <Route path="manageitem" element={<RequireAdmin><ManageItem></ManageItem></RequireAdmin>}></Route>
