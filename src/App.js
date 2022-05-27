@@ -18,6 +18,7 @@ import Alluser from "./pages/Dashborad/Admin/Alluser";
 import RequireAdmin from "./pages/Login/RequireAdmin";
 import Reviews from "./pages/Reviews/Reviews";
 import Additem from "./pages/Dashborad/Admin/Additem";
+import ManageItem from "./pages/Dashborad/Admin/ManageItem";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="review" element={<Myreview></Myreview>}></Route>
           <Route path="alluser" element={<RequireAdmin><Alluser></Alluser></RequireAdmin>}></Route>
           <Route path="additem" element={<RequireAdmin><Additem></Additem></RequireAdmin>}></Route>
+          <Route path="manageitem" element={<RequireAdmin><ManageItem></ManageItem></RequireAdmin>}></Route>
         </Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="signup" element={<SignUp></SignUp>}></Route>

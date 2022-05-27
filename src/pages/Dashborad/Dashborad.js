@@ -52,6 +52,9 @@ const Dashborad = () => {
                 <li>
                   <Link to="/dashboard/additem">Add Item</Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/manageitem">Manage Item</Link>
+                </li>
               </>
               :
               <>

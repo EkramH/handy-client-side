@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 const Products = () => {
   const [products] = useProducts();
 
+  
   return (
     <div>
       <div>
