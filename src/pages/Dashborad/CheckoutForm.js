@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const CheckoutForm = ({totalPrice}) => {
+const CheckoutForm = ({totalPrice, orders}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
+    const [success, setSuccess] = useState('');
+    const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
     const price = totalPrice;
+    const {name, itemName, userEmail} = orders;
 
     useEffect(() => {
         fetch('https://boiling-garden-19713.herokuapp.com/create-payment-intent', {
@@ -43,6 +46,31 @@ const CheckoutForm = ({totalPrice}) => {
             card,
         });
             setCardError(error?.message || '');
+            setSuccess('');
+
+            // Confirm
+            const {paymentIntent, error: intentError} = await stripe.confirmCardPayment(
+                clientSecret,
+                {
+                  payment_method: {
+                    card: card,
+                    billing_details: {
+                      name: name,
+                      email: userEmail
+                    },
+                  },
+                },
+              );
+
+            if(intentError){
+                setCardError(intentError?.message);
+
+            }else{
+                setCardError('');
+                setTransactionId(paymentIntent.id);
+                console.log(paymentIntent);
+                setSuccess('Congrate! Your paymet is complete!');
+            }
     }
     return (
         <div>
@@ -69,6 +97,12 @@ const CheckoutForm = ({totalPrice}) => {
             </form>
             {
                 cardError && <p className='text-red-500'>{cardError}</p>
+            }
+            {
+                success && <div>
+                    <p className='text-green-500'>{success}</p>
+                    <p className='text-green-500'>Your Transaction Id: <span className='text-primary'>{transactionId}</span></p>
+                </div>
             }
         </div>
     );
